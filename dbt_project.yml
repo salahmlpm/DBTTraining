@@ -35,4 +35,7 @@ models:
   my_new_project:
     # Applies to all files under models/example/
     example:
-      materialized: view
+      materialized: table
+      schema: ANALYTICS
+      pre_hook: "insert into analytics.auditing.dbtmodelaudit(modelname, model_start, model_end) values('{{this}}', current_timestamp(), null);"
+      post_hook: "update analytics.auditing.dbtmodelaudit set model_end = current_timestamp() where modelname='{{this}}';"
