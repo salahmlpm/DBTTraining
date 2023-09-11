@@ -34,8 +34,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   my_new_project:
     # Applies to all files under models/example/
-    example:
-      materialized: table
-      schema: ANALYTICS
-      pre_hook: "insert into analytics.auditing.dbtmodelaudit(modelname, model_start, model_end) values('{{this}}', current_timestamp(), null);"
-      post_hook: "update analytics.auditing.dbtmodelaudit set model_end = current_timestamp() where modelname='{{this}}';"
+    materialized: table
+    schema: ANALYTICS
+    +pre-hook: "insert into analytics.auditing.dbtmodelaudit(modelname, model_start, model_end) values('{{this}}', current_timestamp(), null);"
+    +post-hook: "update analytics.auditing.dbtmodelaudit set model_end = current_timestamp() where modelname='{{this}}';"

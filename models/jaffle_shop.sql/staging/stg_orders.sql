@@ -1,6 +1,6 @@
 {{
     config(
-        materialized='table', schena = 'staging'
+        materialized='table', schema = 'staging'
     )
 }}
 
