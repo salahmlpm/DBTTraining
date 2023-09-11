@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: customers
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_customers
+    description: "The table contains information on customers"
+    columns:
+      - name: id
+        description: "it's unique and not null ID column. It accepts only even values"
+        tests:
+          - unique
+          - not_null
+          - is_even
+
+  - name: stg_orders
+    description: "{{ doc('orders')}}"
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+      - name: status
+        tests:
+          - accepted_values:
+              values:
+                ["placed", "shipped", "completed", "return_pending", "returned"]
+      - name: user_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: id

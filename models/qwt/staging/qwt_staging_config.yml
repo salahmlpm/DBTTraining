@@ -1,0 +1,25 @@
+models:
+  - name : stg_qwt_customers
+    config:
+      materialized : table
+      database : QWT_ANALYTICS
+      schema : STAGING
+
+  - name : stg_qwt_employee
+    config:
+      materialized : table
+      database : QWT_ANALYTICS
+      schema : STAGING
+
+  - name : stg_qwt_facts
+    config:
+      materialized : table
+      database : QWT_ANALYTICS
+      schema : STAGING
+
+  - name : stg_qwt_products
+    config:
+      materialized : table
+      database : QWT_ANALYTICS
+      schema : STAGING
+
